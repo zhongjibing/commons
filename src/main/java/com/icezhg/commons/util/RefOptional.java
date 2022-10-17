@@ -1,6 +1,7 @@
 package com.icezhg.commons.util;
 
 import java.util.NoSuchElementException;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
@@ -52,6 +53,12 @@ public class RefOptional<T> {
 
     public boolean isPresent() {
         return value != null;
+    }
+
+    public void ifPresent(Consumer<? super T> action) {
+        if (value != null) {
+            action.accept(value);
+        }
     }
 
     public boolean isEmpty() {
