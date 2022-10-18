@@ -7,40 +7,40 @@ import java.util.function.Function;
 /**
  * Created by zhongjibing on 2022/08/29.
  */
-public class RefOptional<T> {
+public class OptRef<T> {
 
-    private static final RefOptional<?> EMPTY = new RefOptional<>(null);
+    private static final OptRef<?> EMPTY = new OptRef<>(null);
 
     private final T value;
 
-    public RefOptional(T value) {
+    public OptRef(T value) {
         this.value = value;
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> RefOptional<T> of(T value) {
-        return value == null ? (RefOptional<T>) EMPTY : new RefOptional<>(value);
+    public static <T> OptRef<T> of(T value) {
+        return value == null ? (OptRef<T>) EMPTY : new OptRef<>(value);
     }
 
-    public <R> RefOptional<R> map(Function<? super T, ? extends R> mapper) {
+    public <R> OptRef<R> map(Function<? super T, ? extends R> mapper) {
         if (value != null) {
-            return new RefOptional<>(mapper.apply(value));
+            return new OptRef<>(mapper.apply(value));
         }
         return empty();
     }
 
-    public <R> RefOptional<R> cast(Class<R> clazz) {
+    public <R> OptRef<R> cast(Class<R> clazz) {
         if (value != null && clazz.isAssignableFrom(value.getClass())) {
             @SuppressWarnings("unchecked")
-            RefOptional<R> instance = (RefOptional<R>) this;
+            OptRef<R> instance = (OptRef<R>) this;
             return instance;
         }
         return empty();
     }
 
-    public <R> RefOptional<R> empty() {
+    public <R> OptRef<R> empty() {
         @SuppressWarnings("unchecked")
-        RefOptional<R> empty = (RefOptional<R>) EMPTY;
+        OptRef<R> empty = (OptRef<R>) EMPTY;
         return empty;
     }
 

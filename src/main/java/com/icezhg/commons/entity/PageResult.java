@@ -1,22 +1,11 @@
 package com.icezhg.commons.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import java.util.List;
+import java.util.Collection;
 
 /**
- * Created by zhongjibing on 2019/08/05
+ * Created by zhongjibing on 2022/09/04.
  */
-@Getter
-@Setter
-public class PageResult<T> extends PageQuery {
-
-    private int totalCount;
-    private List<T> records;
-
-    public int getTotalPage() {
-        return (totalCount + super.getPageSize() - 1) / super.getPageSize();
-    }
-
-}
+public record PageResult(
+        int total,
+        Collection<?> data
+) {}
