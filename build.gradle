@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'com.icezhg'
+version = '2.0.0'
+description = 'commons'
+sourceCompatibility = '17'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+java {
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        mavenLocal()
+        maven {
+            name = 'aliyun'
+            def releasesRepoUrl = 'https://packages.aliyun.com/maven/repository/2027113-release-yjsA6r/'
+            def snapshotsRepoUrl = 'https://packages.aliyun.com/maven/repository/2027113-snapshot-4NJMQr/'
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials(PasswordCredentials)
+        }
+    }
+}
+
+

@@ -1,15 +1,16 @@
 package com.icezhg.commons.entity;
 
-import lombok.Getter;
-
 /**
  * Created by zhongjibing on 2022/09/04.
  */
-@Getter
 public class PageQuery extends FuzzyQuery {
     private int pageNum = 1;
     private int pageSize = 10;
     private int offset = 0;
+
+    public int getPageNum() {
+        return pageNum;
+    }
 
     public void setPageNum(Integer pageNum) {
         if (pageNum != null && pageNum > 0) {
@@ -17,6 +18,10 @@ public class PageQuery extends FuzzyQuery {
 
             resetOffset();
         }
+    }
+
+    public int getPageSize() {
+        return pageSize;
     }
 
     public void setPageSize(Integer pageSize) {
@@ -27,7 +32,12 @@ public class PageQuery extends FuzzyQuery {
         }
     }
 
+    public int getOffset() {
+        return offset;
+    }
+
     private void resetOffset() {
         this.offset = (pageNum - 1) * pageSize;
     }
+
 }
