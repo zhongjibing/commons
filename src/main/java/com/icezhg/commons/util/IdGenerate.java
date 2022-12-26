@@ -12,8 +12,8 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public final class IdGenerate {
 
-    private static final char[] DICT = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E',
-            'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'};
+    private static final char[] DICT = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e',
+            'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v'};
 
     private static final AtomicLong COUNTER = new AtomicLong(0);
 
@@ -85,5 +85,12 @@ public final class IdGenerate {
         final char[] buf = new char[repeat];
         Arrays.fill(buf, '0');
         return new String(buf);
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+
+            System.out.println(nextId());
+        }
     }
 }
