@@ -60,7 +60,7 @@ public final class IdGenerator {
         return leftPad(Long.toBinaryString(COUNTER.getAndIncrement() & 0x7fff), 18);
     }
 
-    public static String right(final String str, final int len) {
+    private static String right(final String str, final int len) {
         if (len < 0) {
             return EMPTY;
         }
